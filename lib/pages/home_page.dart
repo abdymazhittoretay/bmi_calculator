@@ -11,6 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextEditingController _heightController = TextEditingController();
+  double? _heightValue = 0.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +35,10 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Column(
                 children: [
-                  HeightWidget(),
+                  HeightWidget(
+                    controller: _heightController,
+                    onChanged: onChangedHeight,
+                  ),
                   Divider(
                     height: 40.0,
                     color: Colors.black54,
@@ -44,5 +50,12 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+  
+  // Functions
+  void onChangedHeight(value){
+    setState(() {
+      _heightValue = double.tryParse(_heightController.text);
+    });
   }
 }
