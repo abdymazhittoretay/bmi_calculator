@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:bmi_calculator/widgets/height_widget.dart';
+import 'package:bmi_calculator/widgets/weight_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TextEditingController _heightController = TextEditingController();
   double? _heightValue = 0.0;
+
+  final TextEditingController _weightController = TextEditingController();
+  double? _weightValue = 0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,11 @@ class _HomePageState extends State<HomePage> {
                   Divider(
                     height: 40.0,
                     color: Colors.black54,
-                  )
+                  ),
+                  WeightWidget(
+                    controller: _weightController,
+                    onChanged: onChangedWeight,
+                  ),
                 ],
               ),
             )
@@ -51,11 +59,17 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-  
+
   // Functions
-  void onChangedHeight(value){
+  void onChangedHeight(value) {
     setState(() {
       _heightValue = double.tryParse(_heightController.text);
+    });
+  }
+
+  void onChangedWeight(value) {
+    setState(() {
+      _weightValue = double.tryParse(_weightController.text);
     });
   }
 }

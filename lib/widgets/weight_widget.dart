@@ -1,20 +1,19 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 
-class HeightWidget extends StatelessWidget {
+class WeightWidget extends StatelessWidget {
   final TextEditingController controller;
   final void Function(String)? onChanged;
 
-  const HeightWidget(
-      {super.key, required this.controller, required this.onChanged});
+  const WeightWidget({super.key, required this.controller, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text("Height (cm):"),
+        Text("Weight (kg):"),
         SizedBox(
             width: 60,
             height: 30,
