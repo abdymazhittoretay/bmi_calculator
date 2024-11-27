@@ -62,8 +62,14 @@ class _HomePageState extends State<HomePage> {
             CalculateWidget(
               onPressed: onPressed,
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             OutputWidget(
               bmiResult: _bmiResult,
+            ),
+            SizedBox(
+              height: 20.0,
             ),
           ],
         ),
