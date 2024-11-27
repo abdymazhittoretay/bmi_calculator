@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 class CalculateWidget extends StatelessWidget {
   final void Function()? onPressed;
 
-  const CalculateWidget({
-    super.key,
-    required this.onPressed
-  });
+  const CalculateWidget({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(

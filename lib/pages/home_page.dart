@@ -2,6 +2,7 @@
 
 import 'package:bmi_calculator/widgets/calculate_widget.dart';
 import 'package:bmi_calculator/widgets/height_widget.dart';
+import 'package:bmi_calculator/widgets/output_widget.dart';
 import 'package:bmi_calculator/widgets/weight_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +61,10 @@ class _HomePageState extends State<HomePage> {
             ),
             CalculateWidget(
               onPressed: onPressed,
-            )
+            ),
+            OutputWidget(
+              bmiResult: _bmiResult,
+            ),
           ],
         ),
       ),
