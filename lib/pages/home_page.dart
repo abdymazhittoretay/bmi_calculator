@@ -34,6 +34,8 @@ class _HomePageState extends State<HomePage> {
     ["Obese Class III", "> 40"],
   ];
 
+  String _classification = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,12 +82,17 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 20.0,
             ),
-            _bmiResult.isFinite && _bmiResult != 0.0 ? OutputWidget(
-              bmiResult: _bmiResult,
-            ) : SizedBox(),
-            _bmiResult.isFinite && _bmiResult != 0.0 ? BmiTableWidget(
-              bmiClassification: _bmiClassification,
-            ) : SizedBox()
+            _bmiResult.isFinite && _bmiResult != 0.0
+                ? OutputWidget(
+                    bmiResult: _bmiResult,
+                    classification: _classification,
+                  )
+                : SizedBox(),
+            _bmiResult.isFinite && _bmiResult != 0.0
+                ? BmiTableWidget(
+                    bmiClassification: _bmiClassification,
+                  )
+                : SizedBox()
           ],
         ),
       ),
@@ -109,12 +116,32 @@ class _HomePageState extends State<HomePage> {
     if (_heightValue != null && _weightValue != null) {
       setState(() {
         _bmiResult = _weightValue! / ((_heightValue! * _heightValue!) / 10000);
+        setClassification();
       });
     } else {
       setState(() {
         _bmiResult = 0.0;
       });
     }
-    print(_bmiResult.toStringAsFixed(1));
+  }
+
+  void setClassification() {
+    if (_bmiResult <= 16.0) {
+      _classification = "Severe Thinness";
+    } else if (_bmiResult > 16.0 && _bmiResult <= 17.0) {
+      _classification = "Moderate Thinness";
+    } else if (_bmiResult > 17.0 && _bmiResult <= 18.5) {
+      _classification = "Mild Thinness";
+    } else if (_bmiResult > 18.5 && _bmiResult <= 25) {
+      _classification = "Normal";
+    } else if (_bmiResult > 25.0 && _bmiResult <= 30.0) {
+      _classification = "Overweight";
+    } else if (_bmiResult > 30.0 && _bmiResult <= 35.0) {
+      _classification = "Obese Class I";
+    } else if (_bmiResult > 35.0 && _bmiResult <= 40.0) {
+      _classification = "Obese Class II";
+    } else if (_bmiResult > 40.0) {
+      _classification = "Obese Class III";
+    }
   }
 }
