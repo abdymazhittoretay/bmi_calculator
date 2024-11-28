@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bmi_calculator/widgets/bmi_table_widget.dart';
 import 'package:bmi_calculator/widgets/calculate_widget.dart';
 import 'package:bmi_calculator/widgets/height_widget.dart';
 import 'package:bmi_calculator/widgets/output_widget.dart';
@@ -22,14 +23,28 @@ class _HomePageState extends State<HomePage> {
 
   double _bmiResult = 0.0;
 
+  final List<List<String>> _bmiClassification = [
+    ["Severe Thinness", "< 16"],
+    ["Moderate Thinness", "16 - 17"],
+    ["Mild Thinness", "17 - 18.5"],
+    ["Normal", "18.5 - 25"],
+    ["Overweight", "25 - 30"],
+    ["Obese Class I", "30 - 35"],
+    ["Obese Class II", "35 - 40"],
+    ["Obese Class III", "> 40"],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 242, 248),
       appBar: AppBar(
-        title: Text("BMI Calculator"),
+        title: Text(
+          "BMI Calculator",
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 243, 242, 248),
+        backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -40,7 +55,7 @@ class _HomePageState extends State<HomePage> {
               margin: EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(5.0),
               ),
               child: Column(
                 children: [
@@ -65,12 +80,12 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 20.0,
             ),
-            OutputWidget(
+            _bmiResult.isFinite && _bmiResult != 0.0 ? OutputWidget(
               bmiResult: _bmiResult,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
+            ) : SizedBox(),
+            _bmiResult.isFinite && _bmiResult != 0.0 ? BmiTableWidget(
+              bmiClassification: _bmiClassification,
+            ) : SizedBox()
           ],
         ),
       ),

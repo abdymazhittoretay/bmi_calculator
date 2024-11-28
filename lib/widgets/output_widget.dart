@@ -10,12 +10,14 @@ class OutputWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: bmiResult.isFinite && bmiResult != 0.0
-          ? Text(
-              "BMI: ${bmiResult.toStringAsFixed(1)}",
-              style: TextStyle(fontSize: 24.0,),
-            )
-          : null,
-    );
+        child: Padding(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: Text(
+        "BMI: ${bmiResult.toStringAsFixed(1)}",
+        style: TextStyle(
+          fontSize: 24.0,
+        ),
+      ),
+    ));
   }
 }
